@@ -4,9 +4,9 @@ import { useCoffeeData } from '../../hooks/useCoffeeData';
 import { Loading, Error } from '../../components';
 
 const HotCoffeePage: NextPage = () => {
-  const { data, error } = useCoffeeData('hot');
+  const { data, error } = useCoffeeData('hotasdasd');
 
-  if(error) return <Error />
+  if(error) return <Error error={error} />
   if(!data) return <Loading />
 
   return (

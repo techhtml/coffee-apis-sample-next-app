@@ -6,7 +6,7 @@ import { Loading, Error } from '../../components';
 const IcedCoffeePage: NextPage = () => {
   const { data, error } = useCoffeeData('iced');
 
-  if(error) return <Error />
+  if(error) return <Error error={error} />
   if(!data) return <Loading />
 
   return (
