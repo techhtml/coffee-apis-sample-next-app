@@ -1,7 +1,8 @@
+import styled from '@emotion/styled';
 import type { NextPage } from 'next';
 import type { CoffeeData } from '../../types/Coffee';
 import { useCoffeeData } from '../../hooks/useCoffeeData';
-import { Loading, Error } from '../../components';
+import { Loading, Error, Coffee } from '../../components';
 
 const IcedCoffeePage: NextPage = () => {
   const { data, error } = useCoffeeData('iced');
@@ -12,24 +13,21 @@ const IcedCoffeePage: NextPage = () => {
   return (
     <div>
       <h1>Iced</h1>
-      {data.map((coffeeData: CoffeeData) => {
-        const { id, description, ingredients, title } = coffeeData;
-        return (
-          <div key={`coffee-${id}`}>
-            <h1>{title}</h1>
-            <p>{description}</p>
-            <div>
-              {ingredients.map((ingrendent: string, index: number) => {
-                return (
-                  <div key={`coffee-${id}-ingredients-${index}`}>{ingrendent}</div>
-                )
-              })}
-            </div>
-          </div>
-        )
-      })}
+      <CoffeeContainer>
+        {data.map((coffeeData: CoffeeData) => {
+          return (
+            <Coffee key={`coffee-${coffeeData.id}`} coffeeData={coffeeData} />
+          )
+        })}
+      </CoffeeContainer>
     </div>
   )
 }
 
 export default IcedCoffeePage;
+
+const CoffeeContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+`
