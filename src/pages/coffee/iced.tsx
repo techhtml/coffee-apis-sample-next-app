@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
 import type { CoffeeData } from '../../types/Coffee';
 import { useCoffeeData } from '../../hooks/useCoffeeData';
+import { Loading, Error } from '../../components';
 
 const IcedCoffeePage: NextPage = () => {
   const { data, error } = useCoffeeData('iced');
 
-  if(error) return <div>Failed to load</div>
-  if(!data) return <div>Loading...</div>
+  if(error) return <Error />
+  if(!data) return <Loading />
 
   return (
     <div>
